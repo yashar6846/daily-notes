@@ -1,3 +1,9 @@
-#practice js
+# practice js
 
-###Think befor you speak
+### Think befor you speak
+
+*function
+
+*Do while
+
+*Events

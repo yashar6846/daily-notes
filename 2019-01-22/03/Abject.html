@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Abject</title>
+    <script>
+        var txt = "Drod"
+        //alert(txt.length)
+        //alert(txt.constructor)
+
+        var txt2 = "yashar !"
+        var txt3 = " how are you"
+         
+        //txt = txt.concat(txt2,txt3 , "Goode ?")
+        //alert(txt.indexOf('yashar '))
+        //alert(txt.charAt(3))
+       // alert(txt.replace('yashar' , 'Gezal'))
+
+       var str = "hadi,ondi,maji,nadi"
+       var names = str.split("," ,3)
+       //alert(names)
+        // alert(txt.substr(0,3))
+         //alert(txt.toUpperCase())
+
+         //-Wrapper Methods
+         alert(txt.anchor('top'))
+
+        function employee(name , job , born){
+            this.name = name
+            this.job = job
+            this.born = born
+        }
+        var person1 = new employee("ahmad ahmadi" , "programmer" ,1990)
+        employee.prototype.salary = null
+        person1.salary = "20000"
+       // document.write(person1.name)
+      // alert(person1.name)
+      //alert(person1.salary)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Window</title>
+</head>
+<body>
+    <script>
+      //  window.document.getElementById()
+       // alert(window.innerWidth)
+       var win
+       function btnOpen_click(){
+         win =  window.open("" ,"" , "blank")
+       }
+
+      function btnClose_click(){
+          win.close
+      }
+      function btnMove_click(){
+          win.moveTo(600,700)
+          win.focus()
+      }
+
+      function btnResize_click(){
+          win.resizeTo(800 , 100)
+          win.focus()
+      }
+       var t = setInterval(function(){timer()} , 1000)
+       function timer(){
+           var d = new Date()
+           document.getElementById('timer').innerHTML = d.toLocaleTimeString()
+       }
+       var timerState = true
+       function toggleTimer(btn){
+         
+           if(timerState){
+               clearInterval(t)
+               btn.value = "Play"
+               timerState = false
+           }
+           else{
+             t = setInterval(function(){timer()} , 1000)
+             btn.value = "pause"
+             timerState = true
+           }
+       }
+
+    </script>
+
+    <input type="button" value="Open Window" onclick="btnOpen_click()" />
+    <input type="button" value="Close Window" onclick="btnClose_click()" />
+    <input type="button" value="Move Window" onclick="btnMove_click()" />
+    <input type="button" value="Resize Window" onclick="btnResize_click()" />
+    <br />
+    <p id="timer"></p>
+    <input type="button" value="pause" onclick="toggleTimer(this)" />
+</body>
+</html>

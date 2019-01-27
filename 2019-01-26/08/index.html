@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+
+      var selectedperson;
+      function addperson(btn) {
+          var fname = document.getElementById('txtFName').value
+          var lname = document.getElementById('txtLName').value
+
+            if (btn.value=="Add"){
+          var person = document.createElement ('tr')
+           person.onmouseover = function(){this.style.backgroundColor = 'pink'}
+           person.onmouseout = function(){this.style.backgroundColor = 'white'}
+
+           var chkCell = document.createElement('td')
+           chkCell.innerHTML = "<input type='checkbox' onclick='chkClick(this)'/>"
+
+            var fnCell = document.createElement ('td')
+            var fnNode = document.createTextNode(fname)
+            fnCell.appendChild(fnNode)
+
+            var lnCell = document.createElement ('td')
+            var lnNode = document.createTextNode(lname)
+            lnCell.appendChild(lnNode)
+
+            var delLink = document.createElement('a')
+            delLink.innerHTML = 'Delete'
+            delLink.href='#'
+            //delLink.onclick = function(){delperson(event)}
+            //delLink.onclick = function(){delperson2(this)}
+            delLink.onclick = function(){delperson3(person)}
+
+            var editLink = document.createElement('a')
+            editLink.innerHTML = 'Edit'
+            editLink.href='#'
+            editLink.onclick=function() {editperson(person)}
+
+            var sep = document.createTextNode(' | ')
+
+            var opCell = document.createElement('td')
+            opCell.appendChild(delLink)
+            opCell.appendChild(sep)
+            opCell.appendChild(editLink)
+
+           person.appendChild(chkCell)
+            person.appendChild(fnCell)
+            person.appendChild(lnCell)
+            person.appendChild(opCell)
+
+            document.getElementById('tblpersons').appendChild(person)
+            }
+
+            else{
+                selectedperson.childNodes[1].innerHTML = fname
+                selectedperson.childNodes[2].innerHTML = lname
+                selectedperson.backgroundColor = "white"
+            }
+      }
+
+      function delperson(e){
+          var person = e.srcElement.parentNode.parentNode
+          document.getElementById('tblpersons').removeChild(person)
+      }
+      function delperson2(link){
+          var person = link.parentNode.parentNode
+          document.getElementById('tblpersons').removeChild(person)
+      }
+      function delperson3(person){
+          
+          document.getElementById('tblpersons').removeChild(person)
+      }
+      function editperson(person){
+          selectedperson = person
+          person.style.backgroundColor = "orange"
+          document.getElementById('txtFName').value = person.childNodes[1].innerHTML
+          document.getElementById('txtLName').value = person.childNodes[2].innerHTML
+          document.getElementById('btnAdd').value = "Modify"
+      }
+
+      function chkAll_click(chkAll)
+      {
+          var tbl = document.getElementById('tblpersons')
+          if(chkAll.checked)
+             for(var i=1;i<tbl.childNodes.length ; ++i)
+                tbl.childNodes[i].childNodes[0].childNodes[0].checked = "checked"
+        else
+             for(var i=1;i<tbl.childNodes.length ; ++i)
+                tbl.childNodes[i].childNodes[0].childNodes[0].checked = ""
+      }
+      function chkClick(chk){
+          var tbl = document.getElementById('tblpersons')
+          if(!chk.checked)
+             document.getElementById('chkAll').checked = ""
+        else
+         for(var i=1 ; i<tbl.childNodes.length;++i)
+           if(tbl.childNodes[i].childNodes[0].childNodes[0].checked)
+             continue
+            else
+             break
+
+        if(i==tbl.childNodes.length)
+            document.getElementById('chkAll').checked = "checked"
+      }
+
+      function deleteSelected(){
+          var tbl = document.getElementById('tblpersons')
+          var boxes = tbl.getElementsByTagName('input')
+          for(var i=1 ; i<boxes.length;)
+          {
+              if(boxes[i].checked)
+              {
+                  tbl.removeChild(boxes[i].parentNode.parentNode)
+              }
+              else
+                ++i
+          }
+      }
+    </script>
+</head>
+<body>
+
+    First Name <input type="text" id="txtFName" /><br />
+    Last Name  <input type="text" id="txtLName" /><br />
+    <input type="button" value="Add" id="btnAdd" onclick="addperson(this)" />
+    <hr />
+    <input type="button" value="Delete" onclick="deleteSelected()" />
+    <table id="tblpersons" align="center" border="1" width="300">
+        <tr>
+            <th><input type="checkbox" id="chkAll" onclick="chkAll_click(this)" /></th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Operations</th>
+        </tr>
+    </table>
+</body>
+</html>

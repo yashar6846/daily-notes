@@ -1,3 +1,3 @@
 # Dom
 
-## Practice Dom and LearnFays(لرزن فایز)
+## Practice Dom and LearnFays(Az sayte LearnFayze)
